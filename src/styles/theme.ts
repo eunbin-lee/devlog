@@ -67,19 +67,53 @@ Object.keys(sizes).reduce((acc: Media, label: string) => {
   return acc;
 }, media);
 
-const colors = {
+const palette = {
   white: '#ffffff',
   black: '#212529',
+  blue: '#4263eb',
+  red: '#f03e3e',
+  /* teal */
+  teal0: '#20c997',
+  teal1: '#12b886',
+  teal2: '#0ca678',
+  /* gray */
+  gray0: '#f8f9fa',
+  gray1: '#f1f3f5',
+  gray2: '#e9ecef',
+  gray3: '#dee2e6',
+  gray4: '#ced4da',
+  gray5: '#adb5bd',
+  gray6: '#868e96',
+  gray7: '#495057',
+  gray8: '#343a40',
 };
 
 const fontSizes = {
-  medium: { fontSize: '1rem' },
+  xsmall: '0.8rem',
+  small: '0.85rem',
+  medium: '1rem',
+  large: '1.15rem',
+  xlarge: '1.25rem',
+};
+
+const buttonColors = {
+  teal: {
+    background: palette.teal1,
+    color: palette.white,
+    hoverBackground: palette.teal0,
+  },
+  lightGray: {
+    background: palette.gray2,
+    color: palette.gray7,
+    hoverBackground: palette.gray1,
+  },
 };
 
 const theme = {
-  colors,
+  palette,
   fontSizes,
   media,
+  buttonColors,
 };
 
 export type Theme = typeof theme;
