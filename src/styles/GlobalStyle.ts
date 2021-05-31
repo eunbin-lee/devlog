@@ -24,8 +24,14 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
   }
+  input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid ${theme.palette.gray4};
+  }
   button {
     outline: none;
+    background: none;
     border: none;
     cursor: pointer;
   }

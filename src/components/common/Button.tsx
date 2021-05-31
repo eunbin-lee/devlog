@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import theme from '../../styles/theme';
 
-type ColorType = 'teal' | 'lightGray' | 'darkGray';
+type ColorType = 'violet' | 'lightGray' | 'darkGray';
 type SizeType = 'small' | 'default' | 'large';
 
 const CustomButton = styled.button<{
@@ -34,7 +34,7 @@ const CustomButton = styled.button<{
     css`
       height: 2rem;
       padding: 0 1.25rem;
-      font-size: ${theme.fontSizes.large};
+      font-size: ${theme.fontSizes.default};
       border-radius: 1rem;
     `};
   color: ${(props) => theme.buttonColors[props.color].color};
@@ -69,7 +69,7 @@ interface ButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, 'size'> {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  color = 'teal',
+  color = 'violet',
   size = 'default',
   border = false,
   ...rest

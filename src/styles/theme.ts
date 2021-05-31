@@ -1,81 +1,24 @@
-import baseStyled, {
-  css,
-  CSSProp,
-  ThemedStyledInterface,
-} from 'styled-components';
+import baseStyled, { ThemedStyledInterface } from 'styled-components';
 
-const sizes: { [key: string]: number } = {
-  mobile: 320,
-  tablet: 768,
-  lowDesktop: 1024,
-  highDesktop: 1240,
+const mediaQuery = (maxWidth: number) => `
+  @media only screen and (max-width: ${maxWidth}rem)
+`;
+
+const media = {
+  small: mediaQuery(19.938), // 319px
+  medium: mediaQuery(47.938), // 767px
+  large: mediaQuery(63.938), // 1023px
+  xlarge: mediaQuery(77.438), // 1239px
 };
-
-type BackQuoteArgs = string[];
-
-interface Media {
-  mobile: (...args: BackQuoteArgs) => CSSProp | undefined;
-  tablet: (...args: BackQuoteArgs) => CSSProp | undefined;
-  lowDesktop: (...args: BackQuoteArgs) => CSSProp | undefined;
-  highDesktop: (...args: BackQuoteArgs) => CSSProp | undefined;
-}
-
-const media: Media = {
-  mobile: (...args: BackQuoteArgs) => undefined,
-  tablet: (...args: BackQuoteArgs) => undefined,
-  lowDesktop: (...args: BackQuoteArgs) => undefined,
-  highDesktop: (...args: BackQuoteArgs) => undefined,
-};
-
-Object.keys(sizes).reduce((acc: Media, label: string) => {
-  switch (label) {
-    case 'mobile':
-      acc.mobile = (...args: BackQuoteArgs) =>
-        css`
-          @media only screen and (min-width: ${sizes.mobile}) {
-            ${args}
-          }
-        `;
-      break;
-    case 'tablet':
-      acc.tablet = (...args: BackQuoteArgs) =>
-        css`
-          @media only screen and (min-width: ${sizes.tablet}) {
-            ${args}
-          }
-        `;
-      break;
-    case 'lowDesktop':
-      acc.lowDesktop = (...args: BackQuoteArgs) =>
-        css`
-          @media only screen and (min-width: ${sizes.lowDesktop}) {
-            ${args}
-          }
-        `;
-      break;
-    case 'highDesktop':
-      acc.highDesktop = (...args: BackQuoteArgs) =>
-        css`
-          @media only screen and (min-width: ${sizes.highDesktop}) {
-            ${args}
-          }
-        `;
-      break;
-    default:
-      break;
-  }
-  return acc;
-}, media);
 
 const palette = {
   white: '#ffffff',
   black: '#212529',
   blue: '#4263eb',
   red: '#f03e3e',
-  /* teal */
-  teal0: '#20c997',
-  teal1: '#12b886',
-  teal2: '#0ca678',
+  /* violet */
+  violet0: '#6741d9',
+  violet1: '#5f3dc4',
   /* gray */
   gray0: '#f8f9fa',
   gray1: '#f1f3f5',
@@ -103,10 +46,10 @@ const buttonColors: {
     hoverBackground: string;
   };
 } = {
-  teal: {
-    background: palette.teal1,
+  violet: {
+    background: palette.violet1,
     color: palette.white,
-    hoverBackground: palette.teal0,
+    hoverBackground: palette.violet0,
   },
   lightGray: {
     background: palette.gray3,
