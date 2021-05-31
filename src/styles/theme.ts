@@ -89,23 +89,34 @@ const palette = {
 };
 
 const fontSizes = {
-  xsmall: '0.8rem',
-  small: '0.85rem',
-  medium: '1rem',
-  large: '1.15rem',
+  xsmall: '0.725rem',
+  small: '0.8rem',
+  default: '0.95rem',
+  large: '1.125rem',
   xlarge: '1.25rem',
 };
 
-const buttonColors = {
+const buttonColors: {
+  [color: string]: {
+    background: string;
+    color: string;
+    hoverBackground: string;
+  };
+} = {
   teal: {
     background: palette.teal1,
     color: palette.white,
     hoverBackground: palette.teal0,
   },
   lightGray: {
-    background: palette.gray2,
+    background: palette.gray3,
     color: palette.gray7,
-    hoverBackground: palette.gray1,
+    hoverBackground: palette.gray2,
+  },
+  darkGray: {
+    background: palette.gray7,
+    color: palette.white,
+    hoverBackground: palette.gray6,
   },
 };
 
