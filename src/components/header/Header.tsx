@@ -1,21 +1,51 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import Button from '../common/Button';
 import HeaderSearch from './HeaderSearch';
+import AuthModal from '../auth/AuthModal';
 
 function Header() {
   const router = useRouter();
   const { route } = router;
 
+  const [visible, setVisible] = useState(false);
+  const [authMode, setAuthMode] = useState('');
+  const onShowModal = useCallback(
+    (mode: string) => {
+      setAuthMode(mode);
+      setVisible(true);
+    },
+    [visible],
+  );
+  const onClose = useCallback(() => {
+    setVisible(false);
+  }, [visible]);
+
   return (
     <Container className={route !== '/' && 'shadowing'}>
       <Inner>
-        <Logo>Devlog</Logo>
+        <Logo>
+          <Link href="/">Devlog</Link>
+        </Logo>
         <Gnb>
           <HeaderSearch />
-          <Button border={true}>로그인</Button>
+          <Login onClick={() => onShowModal('LOGIN')}>Log in</Login>
+          <Button
+            border={true}
+            onClick={() => onShowModal('REGISTER')}
+            style={{ padding: '1rem', borderRadius: '1.25rem' }}
+          >
+            Get started
+          </Button>
+          <AuthModal
+            visible={visible}
+            mode={authMode}
+            onShow={() => onShowModal(authMode)}
+            onClose={() => onClose()}
+          />
         </Gnb>
       </Inner>
     </Container>
@@ -39,6 +69,9 @@ const Inner = styled.div`
     width: 100%;
     padding: 1rem;
   }
+  ${theme.media.small} {
+    width: 320px;
+  }
 `;
 const Logo = styled.div`
   float: left;
@@ -49,4 +82,9 @@ const Gnb = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
+`;
+const Login = styled.button`
+  margin: 0 1.25rem;
+  font-size: ${theme.fontSizes.default};
+  color: ${theme.palette.violet1};
 `;
