@@ -17,7 +17,6 @@ function HeaderSearch() {
 export default HeaderSearch;
 
 const Search = styled.button`
-  margin-right: 1rem;
   padding-top: 0.3rem;
   font-size: ${theme.fontSizes.xlarge};
   color: ${theme.palette.gray7};
