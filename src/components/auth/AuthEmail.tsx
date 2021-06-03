@@ -2,7 +2,7 @@ import React from 'react';
 import useInput from '../../lib/hooks/useInput';
 import Button from '../common/Button';
 
-function AuthEmail({ message }) {
+function AuthEmail({ mode, message }) {
   const [email, onChangeEmail] = useInput();
 
   return (

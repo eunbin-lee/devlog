@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
-function AuthSocial({ message }) {
+function AuthSocial({ mode, message }) {
   return (
     <>
       <Title>소셜 계정으로 {message}</Title>

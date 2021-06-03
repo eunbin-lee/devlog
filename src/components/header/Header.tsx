@@ -20,7 +20,14 @@ function Header() {
     },
     [visible],
   );
-  const onClose = useCallback(() => {
+  const onToggleMode = useCallback(() => {
+    if (authMode === 'LOGIN') {
+      setAuthMode('REGISTER');
+    } else {
+      setAuthMode('LOGIN');
+    }
+  }, [authMode]);
+  const onCloseModal = useCallback(() => {
     setVisible(false);
   }, [visible]);
 
@@ -43,8 +50,8 @@ function Header() {
           <AuthModal
             visible={visible}
             mode={authMode}
-            onShow={() => onShowModal(authMode)}
-            onClose={() => onClose()}
+            onSwitch={onToggleMode}
+            onClose={() => onCloseModal()}
           />
         </Gnb>
       </Inner>

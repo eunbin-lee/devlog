@@ -8,11 +8,11 @@ import AuthSocial from './AuthSocial';
 interface AuthModalProps {
   visible: boolean;
   mode: 'LOGIN' | 'REGISTER' | string;
-  onShow: (mode: string) => void;
+  onSwitch: () => void;
   onClose: () => void;
 }
 
-function AuthModal({ visible, mode, onShow, onClose }: AuthModalProps) {
+function AuthModal({ visible, mode, onSwitch, onClose }: AuthModalProps) {
   const message = mode === 'LOGIN' ? '로그인' : '회원가입';
 
   return (
@@ -21,22 +21,19 @@ function AuthModal({ visible, mode, onShow, onClose }: AuthModalProps) {
         <ModalBg>
           <Wapper>
             <Header>{mode === 'LOGIN' ? 'Log in' : 'Join us'}</Header>
-            <AuthEmail message={message} />
-            <AuthSocial message={message} />
-            {mode === 'LOGIN' ? (
-              <Suggest>
-                아직 회원이 아니신가요?{' '}
-                <span onClick={() => onShow('REGISTER')}>회원가입</span>
-              </Suggest>
-            ) : (
-              <Suggest>
-                이미 계정이 있으신가요?{' '}
-                <span onClick={() => onShow('LOGIN')}>로그인</span>
-              </Suggest>
-            )}
             <Close onClick={() => onClose()}>
               <GoX />
             </Close>
+            <AuthEmail mode={mode} message={message} />
+            <AuthSocial mode={mode} message={message} />
+            <Suggest>
+              {mode === 'LOGIN'
+                ? '아직 회원이 아니신가요? '
+                : ' 이미 계정이 있으신가요? '}
+              <span onClick={onSwitch}>
+                {mode === 'LOGIN' ? '회원가입' : '로그인'}
+              </span>
+            </Suggest>
           </Wapper>
         </ModalBg>
       )}
@@ -88,17 +85,6 @@ const Header = styled.h1`
   font-size: 1.75rem;
   color: ${theme.palette.black};
 `;
-const Suggest = styled.p`
-  position: absolute;
-  bottom: 2.25rem;
-  right: 2rem;
-  font-size: ${theme.fontSizes.small};
-  span {
-    font-weight: bold;
-    color: ${theme.palette.violet1};
-    cursor: pointer;
-  }
-`;
 const Close = styled.button`
   position: absolute;
   top: 1.75rem;
@@ -109,5 +95,16 @@ const Close = styled.button`
   ${theme.media.medium} {
     top: 1rem;
     right: 1rem;
+  }
+`;
+const Suggest = styled.p`
+  position: absolute;
+  bottom: 2.25rem;
+  right: 2rem;
+  font-size: ${theme.fontSizes.small};
+  span {
+    font-weight: bold;
+    color: ${theme.palette.violet1};
+    cursor: pointer;
   }
 `;
