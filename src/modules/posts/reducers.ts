@@ -5,7 +5,7 @@ import * as faker from 'faker';
 
 const initialState: PostsState = [];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   initialState.push({
     id: faker.random.number(),
     postImg: faker.image.imageUrl(),

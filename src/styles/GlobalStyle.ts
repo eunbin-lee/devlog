@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   html, body {
-    overflow: hidden;
     height: 100%;
   }
   body {

@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
+import theme from '../../styles/theme';
 import { RootState } from '../../modules';
 import { getPosts } from '../../modules/posts';
+import useDateForm from '../../lib/hooks/useDateForm';
 
 function HomeLayout() {
   const posts = useSelector((state: RootState) => state.posts);
@@ -11,9 +14,97 @@ function HomeLayout() {
     dispatch(getPosts());
   }, []);
 
-  console.log(posts);
+  return (
+    <Posts>
+      {posts.map((post) => {
+        const { postImg, postTitle, postSubtitle, createdAt, User } = post;
 
-  return <div>Devlog Home</div>;
+        return (
+          <Post>
+            <ThumbnailImg src={postImg} />
+            <Title>{postTitle}</Title>
+            <Subtitle>{postSubtitle}</Subtitle>
+            <UserInfo>
+              <ProfileImg src={User.userImg} />
+              <div>
+                <Name>{User.userName}</Name>
+                <PostDate>{useDateForm(createdAt)}</PostDate>
+              </div>
+            </UserInfo>
+          </Post>
+        );
+      })}
+    </Posts>
+  );
 }
 
 export default HomeLayout;
+
+const Posts = styled.div`
+  width: 1240px;
+  margin: 1rem auto;
+
+  ${theme.media.xlarge} {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  ${theme.media.small} {
+    width: 320px;
+  }
+`;
+const Post = styled.div`
+  width: 31.33%;
+  height: 25rem;
+  float: left;
+  margin-right: 3%;
+  margin-bottom: 2rem;
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  ${theme.media.medium} {
+    width: 100%;
+    height: inherit;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+`;
+const ThumbnailImg = styled.img`
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 1px solid ${theme.palette.gray5};
+  box-sizing: border-box;
+`;
+const Title = styled.h4`
+  margin-top: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+const Subtitle = styled.p`
+  margin-top: 1rem;
+  font-size: ${theme.fontSizes.xlarge};
+  font-weight: lighter;
+  color: ${theme.palette.gray6};
+`;
+const UserInfo = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 1.75rem;
+`;
+const ProfileImg = styled.img`
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+`;
+const Name = styled.p`
+  margin-bottom: 0.65rem;
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.palette.violet1};
+`;
+const PostDate = styled.p`
+  font-size: ${theme.fontSizes.xsmall};
+  color: ${theme.palette.gray6};
+`;
