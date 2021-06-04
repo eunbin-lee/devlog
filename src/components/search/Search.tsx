@@ -17,11 +17,11 @@ export default Search;
 
 const Container = styled.div`
   overflow: hidden;
-  width: 1240px;
+  width: 1024px;
   margin: 0 auto;
   padding: 1rem 0;
 
-  ${theme.media.xlarge} {
+  ${theme.media.large} {
     width: 100%;
   }
   ${theme.media.small} {

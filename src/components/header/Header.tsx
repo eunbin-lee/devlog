@@ -47,13 +47,13 @@ function Header() {
           >
             Get started
           </Button>
-          <AuthModal
-            visible={visible}
-            mode={authMode}
-            onSwitch={onToggleMode}
-            onClose={() => onCloseModal()}
-          />
         </Gnb>
+        <AuthModal
+          visible={visible}
+          mode={authMode}
+          onSwitch={onToggleMode}
+          onClose={() => onCloseModal()}
+        />
       </Inner>
     </Container>
   );
@@ -68,13 +68,13 @@ const Container = styled.header`
 `;
 const Inner = styled.div`
   overflow: hidden;
-  width: 1240px;
+  width: 1024px;
   margin: 0 auto;
   padding: 1.25rem 0;
 
-  ${theme.media.xlarge} {
+  ${theme.media.large} {
     width: 100%;
-    padding: 1rem;
+    padding: 1.25rem 1rem;
   }
   ${theme.media.small} {
     width: 320px;
@@ -87,7 +87,6 @@ const Logo = styled.div`
 const Gnb = styled.div`
   float: right;
   display: flex;
-  justify-content: right;
   align-items: center;
 `;
 const Login = styled.button`

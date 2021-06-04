@@ -41,10 +41,10 @@ function HomeLayout() {
 export default HomeLayout;
 
 const Posts = styled.div`
-  width: 1240px;
+  width: 1024px;
   margin: 1rem auto;
 
-  ${theme.media.xlarge} {
+  ${theme.media.large} {
     width: 100%;
     padding: 0 1rem;
   }
@@ -57,7 +57,7 @@ const Post = styled.div`
   height: 25rem;
   float: left;
   margin-right: 3%;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   &:nth-child(3n) {
     margin-right: 0;
   }
