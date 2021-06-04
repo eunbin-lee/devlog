@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function useDateForm(date: Date): string {
+export const DateFormat = (date: Date): string => {
   const today = new Date();
   const upload = new Date(date);
   const calcMin = Math.floor((today.getTime() - upload.getTime()) / 1000 / 60);
@@ -13,4 +11,4 @@ export default function useDateForm(date: Date): string {
   if (calcDay < 7) return `${calcDay}일 전`;
 
   return upload.toLocaleString().substr(0, 12);
-}
+};

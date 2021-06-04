@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { RootState } from '../../modules';
 import { getPosts } from '../../modules/posts';
-import useDateForm from '../../lib/hooks/useDateForm';
+import { DateFormat } from '../../lib/utils';
 
 function HomeLayout() {
   const posts = useSelector((state: RootState) => state.posts);
@@ -15,12 +15,12 @@ function HomeLayout() {
   }, []);
 
   return (
-    <Posts>
+    <PostList>
       {posts.map((post) => {
         const { postImg, postTitle, postSubtitle, createdAt, User } = post;
 
         return (
-          <Post>
+          <PostItem>
             <ThumbnailImg src={postImg} />
             <Title>{postTitle}</Title>
             <Subtitle>{postSubtitle}</Subtitle>
@@ -28,19 +28,19 @@ function HomeLayout() {
               <ProfileImg src={User.userImg} />
               <div>
                 <Name>{User.userName}</Name>
-                <PostDate>{useDateForm(createdAt)}</PostDate>
+                <PostDate>{DateFormat(createdAt)}</PostDate>
               </div>
             </UserInfo>
-          </Post>
+          </PostItem>
         );
       })}
-    </Posts>
+    </PostList>
   );
 }
 
 export default HomeLayout;
 
-const Posts = styled.div`
+const PostList = styled.ul`
   width: 1024px;
   margin: 1rem auto;
 
@@ -52,7 +52,7 @@ const Posts = styled.div`
     width: 320px;
   }
 `;
-const Post = styled.div`
+const PostItem = styled.li`
   width: 31.33%;
   height: 25rem;
   float: left;
