@@ -2,38 +2,53 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import Loading from '../common/Loading';
 import { RootState } from '../../modules';
-import { getPosts } from '../../modules/posts';
+import { getPostsThunk } from '../../modules/posts';
 import { DateFormat } from '../../lib/utils';
 
 function HomeLayout() {
-  const posts = useSelector((state: RootState) => state.posts);
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.posts,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(getPostsThunk());
+    if (error) {
+      console.error(error);
+    }
   }, []);
 
   return (
     <PostList>
-      {posts.map((post) => {
-        const { postImg, postTitle, postSubtitle, createdAt, User } = post;
+      {loading && <Loading />}
+      {data &&
+        data.map((post) => {
+          const {
+            postImg,
+            postTitle,
+            postSubtitle,
+            createdAt,
+            userName,
+            userImg,
+          } = post;
 
-        return (
-          <PostItem>
-            <ThumbnailImg src={postImg} />
-            <Title>{postTitle}</Title>
-            <Subtitle>{postSubtitle}</Subtitle>
-            <UserInfo>
-              <ProfileImg src={User.userImg} />
-              <div>
-                <Name>{User.userName}</Name>
-                <PostDate>{DateFormat(createdAt)}</PostDate>
-              </div>
-            </UserInfo>
-          </PostItem>
-        );
-      })}
+          return (
+            <PostItem>
+              <ThumbnailImg src={postImg} />
+              <Title>{postTitle}</Title>
+              <Subtitle>{postSubtitle}</Subtitle>
+              <UserInfo>
+                <ProfileImg src={userImg} />
+                <div>
+                  <Name>{userName}</Name>
+                  <PostDate>{DateFormat(createdAt)}</PostDate>
+                </div>
+              </UserInfo>
+            </PostItem>
+          );
+        })}
     </PostList>
   );
 }
@@ -77,15 +92,25 @@ const ThumbnailImg = styled.img`
   box-sizing: border-box;
 `;
 const Title = styled.h4`
+  overflow: hidden;
   margin-top: 1.25rem;
   font-size: 1.5rem;
   font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 const Subtitle = styled.p`
+  overflow: hidden;
+  display: -webkit-box;
   margin-top: 1rem;
+  line-height: 1.5rem;
   font-size: ${theme.fontSizes.xlarge};
   font-weight: lighter;
   color: ${theme.palette.gray6};
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 `;
 const UserInfo = styled.div`
   display: flex;

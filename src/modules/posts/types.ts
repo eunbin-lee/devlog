@@ -1,22 +1,11 @@
-import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
+import { ActionType } from 'typesafe-actions';
+import { Post } from '../../lib/api/posts';
 
 export type PostsAction = ActionType<typeof actions>;
 
-export type Post = {
-  id: number;
-  postImg: string;
-  postTitle: string;
-  postSubtitle: string;
-  postContent: string;
-  createdAt: Date;
-  likes: number;
-  User: {
-    id: number;
-    userImg: string;
-    userName: string;
-    userIntroduction: string;
-  };
+export type PostsState = {
+  loading: boolean;
+  error: Error | null;
+  data: Post[] | null;
 };
-
-export type PostsState = Post[];
