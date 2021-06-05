@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { GoX } from 'react-icons/go';
-import AuthEmail from './AuthEmail';
-import AuthSocial from './AuthSocial';
+import AuthAccount from './AuthAccount';
 
 interface AuthModalProps {
   visible: boolean;
@@ -24,8 +23,7 @@ function AuthModal({ visible, mode, onSwitch, onClose }: AuthModalProps) {
             <Close onClick={() => onClose()}>
               <GoX />
             </Close>
-            <AuthEmail mode={mode} message={message} />
-            <AuthSocial mode={mode} message={message} />
+            <AuthAccount mode={mode} message={message} />
             <Suggest>
               {mode === 'LOGIN'
                 ? '아직 회원이 아니신가요? '
@@ -81,7 +79,7 @@ const Wapper = styled.div`
 `;
 const Header = styled.h1`
   margin-top: 5rem;
-  margin-bottom: 2.75rem;
+  margin-bottom: 3.25rem;
   font-size: 1.75rem;
   color: ${theme.palette.black};
 `;
