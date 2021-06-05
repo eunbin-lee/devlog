@@ -19,8 +19,14 @@ Medium과 velog를 참고하여 제작 중입니다.
 #### 설치 방법
 
 ```
+// client
 npm install
 npm run dev
+```
+
+```
+// server
+json-server ./data.json --port 5000
 ```
 
 <br>
@@ -47,12 +53,20 @@ npm run dev
 #### 상태 관리
 ```
 - Redux
+- Redux-thunk
 ```
 
 #### 버전 관리
 ```
 - Git & GitHub
 ```
+
+<br>
+<br>
+
+## 출처
+#### 데이터 생성 (data.json)
+[Mockaroo](https://www.mockaroo.com/)
 
 <br>
 <br>
