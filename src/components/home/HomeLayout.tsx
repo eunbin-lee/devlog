@@ -26,6 +26,7 @@ function HomeLayout() {
       {data &&
         data.map((post) => {
           const {
+            id,
             postImg,
             postTitle,
             postSubtitle,
@@ -35,7 +36,7 @@ function HomeLayout() {
           } = post;
 
           return (
-            <PostItem>
+            <PostItem key={id}>
               <ThumbnailImg src={postImg} />
               <Title>{postTitle}</Title>
               <Subtitle>{postSubtitle}</Subtitle>
