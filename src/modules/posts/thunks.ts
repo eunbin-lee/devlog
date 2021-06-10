@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
-import { PostsAction } from './types';
-import { getPosts } from '../../lib/api/posts';
-import { getPostsAsync } from './actions';
+import { PostAction, PostsAction } from './types';
+import { getPost, getPosts } from '../../lib/api/posts';
+import { getPostAsync, getPostsAsync } from './actions';
 
 export function getPostsThunk(): ThunkAction<
   void,
@@ -16,6 +16,21 @@ export function getPostsThunk(): ThunkAction<
     try {
       const posts = await getPosts();
       dispatch(success(posts));
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getPostThunk(
+  id: number,
+): ThunkAction<void, RootState, null, PostAction> {
+  return async (dispatch) => {
+    const { request, success, failure } = getPostAsync;
+    dispatch(request());
+    try {
+      const post = await getPost(id);
+      dispatch(success(post));
     } catch (e) {
       dispatch(failure(e));
     }
