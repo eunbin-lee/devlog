@@ -65,8 +65,8 @@ json-server ./data.json --port 5000
 <br>
 
 ## 출처
-#### 데이터 생성 (data.json)
-[Mockaroo](https://www.mockaroo.com/)
+#### Dummy 데이터 이미지
+[DuckDuckGo]](https://duckduckgo.com/)
 
 <br>
 <br>
