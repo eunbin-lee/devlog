@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { PostAction, PostsAction } from './types';
-import { getPost, getPosts } from '../../lib/api/posts';
+import { getPost, getPosts } from '../../lib/api/post';
 import { getPostAsync, getPostsAsync } from './actions';
 
 export function getPostsThunk(): ThunkAction<

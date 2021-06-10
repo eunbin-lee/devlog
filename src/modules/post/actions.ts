@@ -1,6 +1,6 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { Post } from '../../lib/api/posts';
+import { Post } from '../../lib/api/post';
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';

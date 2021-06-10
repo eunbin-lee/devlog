@@ -1,9 +1,9 @@
 import { createReducer } from 'typesafe-actions';
 import {
-  GET_POST,
   GET_POSTS,
   GET_POSTS_ERROR,
   GET_POSTS_SUCCESS,
+  GET_POST,
   GET_POST_ERROR,
   GET_POST_SUCCESS,
 } from './actions';

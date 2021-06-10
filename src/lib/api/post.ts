@@ -19,7 +19,10 @@ export interface Post {
   postContent: string;
   createdAt: Date;
   likes: number;
-  userId: number;
-  userName: string;
-  userImg: string;
+  user: {
+    id: number;
+    userImg: string;
+    userName: string;
+    userIntroduction: string;
+  };
 }
