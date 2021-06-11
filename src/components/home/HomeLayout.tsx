@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import Loading from '../common/Loading';
 import { RootState } from '../../modules';
-import { getPostsThunk } from '../../modules/posts';
+import { getPostsThunk } from '../../modules/post';
 import { DateFormat } from '../../lib/utils';
 
 function HomeLayout() {
@@ -12,6 +13,7 @@ function HomeLayout() {
     (state: RootState) => state.posts,
   );
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(getPostsThunk());
@@ -20,30 +22,27 @@ function HomeLayout() {
     }
   }, []);
 
+  const onClickPost = (id: number) => {
+    router.push(`/post/${id}`);
+  };
+
   return (
     <PostList>
       {loading && <Loading />}
       {data &&
         data.map((post) => {
-          const {
-            id,
-            postImg,
-            postTitle,
-            postSubtitle,
-            createdAt,
-            userName,
-            userImg,
-          } = post;
+          const { id, postImg, postTitle, postSubtitle, createdAt, user } =
+            post;
 
           return (
-            <PostItem key={id}>
+            <PostItem key={id} onClick={() => onClickPost(id)}>
               <ThumbnailImg src={postImg} />
               <Title>{postTitle}</Title>
               <Subtitle>{postSubtitle}</Subtitle>
               <UserInfo>
-                <ProfileImg src={userImg} />
+                <ProfileImg src={user.userImg} />
                 <div>
-                  <Name>{userName}</Name>
+                  <Name>{user.userName}</Name>
                   <PostDate>{DateFormat(createdAt)}</PostDate>
                 </div>
               </UserInfo>
@@ -89,22 +88,25 @@ const ThumbnailImg = styled.img`
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border: 1px solid ${theme.palette.gray5};
+  border: 1px solid ${theme.palette.gray4};
   box-sizing: border-box;
+  cursor: pointer;
 `;
 const Title = styled.h4`
   overflow: hidden;
   margin-top: 1.25rem;
-  font-size: 1.5rem;
+  line-height: 2.25rem;
+  font-size: 1.625rem;
   font-weight: bold;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer;
 `;
 const Subtitle = styled.p`
   overflow: hidden;
   display: -webkit-box;
-  margin-top: 1rem;
-  line-height: 1.5rem;
+  margin-top: 0.75rem;
+  line-height: 1.75rem;
   font-size: ${theme.fontSizes.xlarge};
   font-weight: lighter;
   color: ${theme.palette.gray6};
@@ -112,6 +114,7 @@ const Subtitle = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   word-break: break-all;
+  cursor: pointer;
 `;
 const UserInfo = styled.div`
   display: flex;
@@ -124,11 +127,13 @@ const ProfileImg = styled.img`
   height: 2.25rem;
   margin-right: 0.5rem;
   border-radius: 50%;
+  cursor: pointer;
 `;
 const Name = styled.p`
   margin-bottom: 0.65rem;
   font-size: ${theme.fontSizes.small};
   color: ${theme.palette.violet1};
+  cursor: pointer;
 `;
 const PostDate = styled.p`
   font-size: ${theme.fontSizes.xsmall};
