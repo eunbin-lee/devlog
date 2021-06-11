@@ -35,6 +35,12 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     cursor: pointer;
   }
+  hr {
+    height: 1px;
+    color: ${theme.palette.gray4};
+    background-color: ${theme.palette.gray3};
+    border: none;
+  }
 `;
 
 export default GlobalStyle;
