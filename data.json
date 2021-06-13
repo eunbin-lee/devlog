@@ -42,7 +42,7 @@
         "postImg": "https://media.wired.com/photos/5b15a21e0b970823f2857e11/191:100/pass/Github-967228286.jpg",
         "postTitle": "저장소, 브랜치에 git push하기",
         "postSubtitle": "저장소, 브랜치에 git push하는 방법에 대해 알아보겠습니다",
-        "postContent": "저장소, 브랜치에 git push하기 임시 내용입니다",
+        "postContent": "<b>저장소, 브랜치에 git push하는 방법</b>\n<li>첫번째 방법</li><li>두번째 방법</li><li>세번째 방법</li>",
         "createdAt": "Wed Feb 10 2021 10:24:15 GMT+0900 (대한민국 표준시)",
         "likes": "35",
         "user": {

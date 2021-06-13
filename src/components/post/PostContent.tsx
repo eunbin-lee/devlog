@@ -3,6 +3,7 @@ import { Post } from '../../lib/api/post';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { AiOutlineSmile, AiFillSmile, AiOutlineLink } from 'react-icons/ai';
+import dompurify from 'dompurify';
 
 interface PostContentProps {
   post: Post;
@@ -12,10 +13,12 @@ function PostContent({ post }: PostContentProps) {
   const { postImg, postContent, likes } = post;
   const [like, setLike] = useState<boolean>(false);
 
+  const sanitizer = dompurify.sanitize;
+
   return (
     <Wrapper>
       <ThumbnailImg src={postImg} />
-      <Content>{postContent}</Content>
+      <Content dangerouslySetInnerHTML={{ __html: sanitizer(postContent) }} />
       <PostInfo>
         <Likes>
           {like ? <AiFillSmile /> : <AiOutlineSmile />} <span>{likes}</span>
@@ -39,7 +42,7 @@ const ThumbnailImg = styled.img`
 `;
 const Content = styled.div`
   margin-top: 2rem;
-  line-height: 1.2rem;
+  line-height: 1.5rem;
   font-size: ${theme.fontSizes.default};
 `;
 const PostInfo = styled.div`

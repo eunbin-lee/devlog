@@ -37,6 +37,7 @@ const Title = styled.h2`
 `;
 const Subtitle = styled.h3`
   margin-top: 1.25rem;
+  line-height: 1.75rem;
   font-size: ${theme.fontSizes.xlarge};
   font-weight: lighter;
   color: ${theme.palette.gray6};
