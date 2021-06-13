@@ -18,11 +18,12 @@ function Post() {
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(getPostThunk(Number(router.query.postId)));
+    const postId = Number(router.query.postId);
+    dispatch(getPostThunk(postId));
     if (error) {
       console.error(error);
     }
-  }, []);
+  }, [router]);
 
   return (
     <>
