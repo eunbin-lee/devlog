@@ -66,7 +66,7 @@ json-server ./data.json --port 5000
 
 ## 출처
 #### Dummy 데이터 이미지
-[DuckDuckGo]](https://duckduckgo.com/)
+[DuckDuckGo](https://duckduckgo.com/)
 
 <br>
 <br>
