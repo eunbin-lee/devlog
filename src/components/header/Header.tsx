@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import logo from '../../../static/logo.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -11,6 +12,9 @@ function Header() {
   const router = useRouter();
   const { route } = router;
 
+  const onClickHome = () => {
+    router.push('/');
+  };
   const [visible, setVisible] = useState(false);
   const [authMode, setAuthMode] = useState('');
   const onShowModal = useCallback(
@@ -34,9 +38,9 @@ function Header() {
   return (
     <Container className={route !== '/' && 'shadowing'}>
       <Inner>
-        <Logo>
-          <Link href="/">Devlog</Link>
-        </Logo>
+        <LogoBlock onClick={onClickHome}>
+          <img src={logo} alt="Devlog logo" />
+        </LogoBlock>
         <Gnb>
           <HeaderSearch />
           <Login onClick={() => onShowModal('LOGIN')}>Log in</Login>
@@ -80,9 +84,8 @@ const Inner = styled.div`
     width: 320px;
   }
 `;
-const Logo = styled.div`
+const LogoBlock = styled.div`
   float: left;
-  font-size: ${theme.fontSizes.large};
 `;
 const Gnb = styled.div`
   float: right;
