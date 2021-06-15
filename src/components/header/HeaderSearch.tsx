@@ -1,15 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { GoSearch } from 'react-icons/go';
+import { useRouter } from 'next/router';
 
 function HeaderSearch() {
+  const router = useRouter();
+  const onClickSearch = () => {
+    router.push('/search');
+  };
+
   return (
-    <Search>
-      <Link href="/search">
-        <GoSearch />
-      </Link>
+    <Search onClick={onClickSearch}>
+      <GoSearch />
     </Search>
   );
 }
