@@ -49,7 +49,7 @@ const Container = styled.div`
   ${theme.media.medium} {
     width: 100%;
   }
-  ${theme.media.small} {
+  ${theme.media.xsmall} {
     width: 320px;
   }
 `;

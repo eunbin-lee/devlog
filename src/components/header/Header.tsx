@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
+import devlog from '../../../static/devlog.png';
 import logo from '../../../static/logo.png';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
@@ -10,7 +10,7 @@ import AuthModal from '../auth/AuthModal';
 
 function Header() {
   const router = useRouter();
-  const { route } = router;
+  const { route, asPath } = router;
 
   const onClickHome = () => {
     router.push('/');
@@ -38,8 +38,15 @@ function Header() {
   return (
     <Container className={route !== '/' && 'shadowing'}>
       <Inner>
-        <LogoBlock onClick={onClickHome}>
-          <img src={logo} alt="Devlog logo" />
+        <LogoBlock>
+          {route.includes('username') ? (
+            <UserBlock>
+              <img src={logo} alt="Devlog logo" onClick={onClickHome} />
+              <Username>{asPath.slice(2)}</Username>
+            </UserBlock>
+          ) : (
+            <img src={devlog} alt="Devlog logo" onClick={onClickHome} />
+          )}
         </LogoBlock>
         <Gnb>
           <HeaderSearch />
@@ -71,7 +78,9 @@ const Container = styled.header`
   }
 `;
 const Inner = styled.div`
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 1024px;
   margin: 0 auto;
   padding: 1.25rem 0;
@@ -80,15 +89,23 @@ const Inner = styled.div`
     width: 100%;
     padding: 1.25rem 1rem;
   }
-  ${theme.media.small} {
+  ${theme.media.xsmall} {
     width: 320px;
   }
 `;
-const LogoBlock = styled.div`
-  float: left;
+const LogoBlock = styled.div``;
+const UserBlock = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+const Username = styled.span`
+  margin-left: 0.25rem;
+  font-size: ${theme.fontSizes.xlarge};
+  font-weight: bold;
+  color: ${theme.palette.gray8};
 `;
 const Gnb = styled.div`
-  float: right;
   display: flex;
   align-items: center;
 `;

@@ -24,7 +24,7 @@ const Container = styled.div`
   ${theme.media.large} {
     width: 100%;
   }
-  ${theme.media.small} {
+  ${theme.media.xsmall} {
     width: 320px;
   }
 `;

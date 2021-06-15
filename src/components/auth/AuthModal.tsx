@@ -23,11 +23,11 @@ function AuthModal({ visible, mode, onSwitch, onClose }: AuthModalProps) {
             <Close onClick={() => onClose()}>
               <GoX />
             </Close>
-            <AuthAccount mode={mode} message={message} />
+            <AuthAccount mode={mode} message={message} onSwitch={onSwitch} />
             <Suggest>
               {mode === 'LOGIN'
                 ? '아직 회원이 아니신가요? '
-                : ' 이미 계정이 있으신가요? '}
+                : '이미 계정이 있으신가요? '}
               <span onClick={onSwitch}>
                 {mode === 'LOGIN' ? '회원가입' : '로그인'}
               </span>
@@ -52,7 +52,7 @@ const ModalBg = styled.div`
   ${theme.media.medium} {
     background: ${theme.palette.white};
   }
-  ${theme.media.small} {
+  ${theme.media.xsmall} {
     width: 320px;
   }
 `;

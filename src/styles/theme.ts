@@ -5,7 +5,8 @@ const mediaQuery = (maxWidth: number) => `
 `;
 
 const media = {
-  small: mediaQuery(19.938), // 319px
+  xsmall: mediaQuery(19.938), // 319px
+  small: mediaQuery(26.563), // 425px
   medium: mediaQuery(47.938), // 767px
   large: mediaQuery(63.938), // 1023px
   xlarge: mediaQuery(77.438), // 1239px
