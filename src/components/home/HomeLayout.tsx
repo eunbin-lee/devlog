@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -35,14 +36,20 @@ function HomeLayout() {
             post;
 
           return (
-            <PostItem key={id} onClick={() => onClickPost(id)}>
-              <ThumbnailImg src={postImg} />
-              <Title>{postTitle}</Title>
-              <Subtitle>{postSubtitle}</Subtitle>
+            <PostItem key={id}>
+              <div onClick={() => onClickPost(id)}>
+                <ThumbnailImg src={postImg} />
+                <Title>{postTitle}</Title>
+                <Subtitle>{postSubtitle}</Subtitle>
+              </div>
               <UserInfo>
-                <ProfileImg src={user.userImg} />
+                <Link href={`/[username]`} as={`/@${user.userName}`}>
+                  <ProfileImg src={user.userImg} />
+                </Link>
                 <div>
-                  <Name>{user.userName}</Name>
+                  <Link href={`/[username]`} as={`/@${user.userName}`}>
+                    <Name>{user.userName}</Name>
+                  </Link>
                   <PostDate>{DateFormat(createdAt)}</PostDate>
                 </div>
               </UserInfo>
@@ -63,7 +70,7 @@ const PostList = styled.ul`
     width: 100%;
     padding: 0 1rem;
   }
-  ${theme.media.small} {
+  ${theme.media.xsmall} {
     width: 320px;
   }
 `;

@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../../components/header/Header';
-import Post from '../../components/post/Post';
+import User from '../../components/user/User';
 
-function DetailPage() {
+function UserPage() {
   return (
     <>
       <Header />
-      <Post />
+      <User />
     </>
   );
 }
 
-export default DetailPage;
+export default UserPage;

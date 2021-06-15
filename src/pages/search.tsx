@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/header/Header';
 import Search from '../components/search/Search';
 
-function search() {
+function SearchPage() {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ function search() {
   );
 }
 
-export default search;
+export default SearchPage;
