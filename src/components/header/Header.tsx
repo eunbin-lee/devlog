@@ -1,39 +1,18 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import devlog from '../../../static/devlog.png';
 import logo from '../../../static/logo.png';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import Button from '../common/Button';
-import HeaderSearch from './HeaderSearch';
-import AuthModal from '../auth/AuthModal';
+import HeaderGnb from './HeaderGnb';
 
 function Header() {
   const router = useRouter();
   const { route, asPath } = router;
 
-  const onClickHome = () => {
+  const onClickHome = useCallback(() => {
     router.push('/');
-  };
-  const [visible, setVisible] = useState(false);
-  const [authMode, setAuthMode] = useState('');
-  const onShowModal = useCallback(
-    (mode: string) => {
-      setAuthMode(mode);
-      setVisible(true);
-    },
-    [visible],
-  );
-  const onToggleMode = useCallback(() => {
-    if (authMode === 'LOGIN') {
-      setAuthMode('REGISTER');
-    } else {
-      setAuthMode('LOGIN');
-    }
-  }, [authMode]);
-  const onCloseModal = useCallback(() => {
-    setVisible(false);
-  }, [visible]);
+  }, [router]);
 
   return (
     <Container className={route !== '/' && 'shadowing'}>
@@ -48,23 +27,7 @@ function Header() {
             <img src={devlog} alt="Devlog logo" onClick={onClickHome} />
           )}
         </LogoBlock>
-        <Gnb>
-          <HeaderSearch />
-          <Login onClick={() => onShowModal('LOGIN')}>Log in</Login>
-          <Button
-            border={true}
-            onClick={() => onShowModal('REGISTER')}
-            style={{ padding: '1rem', borderRadius: '1.25rem' }}
-          >
-            Get started
-          </Button>
-        </Gnb>
-        <AuthModal
-          visible={visible}
-          mode={authMode}
-          onSwitch={onToggleMode}
-          onClose={() => onCloseModal()}
-        />
+        <HeaderGnb />
       </Inner>
     </Container>
   );
@@ -104,13 +67,4 @@ const Username = styled.span`
   font-size: ${theme.fontSizes.xlarge};
   font-weight: bold;
   color: ${theme.palette.gray8};
-`;
-const Gnb = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const Login = styled.button`
-  margin: 0 1.25rem;
-  font-size: ${theme.fontSizes.default};
-  color: ${theme.palette.violet1};
 `;
