@@ -10,7 +10,7 @@ import PostContent from './PostContent';
 import PostTitle from './PostTitle';
 import PostUserInfo from './PostUserInfo';
 
-function Post() {
+function PostLayout() {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.post,
   );
@@ -39,7 +39,7 @@ function Post() {
   );
 }
 
-export default Post;
+export default PostLayout;
 
 const Container = styled.div`
   width: 768px;

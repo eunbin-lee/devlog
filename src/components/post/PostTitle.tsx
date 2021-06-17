@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Post } from '../../lib/api/post';
 import { DateFormat } from '../../lib/utils';
 import styled from 'styled-components';
@@ -16,9 +17,13 @@ function PostTitle({ post }: PostTitleProps) {
       <Title>{postTitle}</Title>
       <Subtitle>{postSubtitle}</Subtitle>
       <UserInfo>
-        <ProfileImg src={user.userImg} />
+        <Link href={`/[username]`} as={`/@${user.userName}`}>
+          <ProfileImg src={user.userImg} />
+        </Link>
         <div>
-          <Name>{user.userName}</Name>
+          <Link href={`/[username]`} as={`/@${user.userName}`}>
+            <Name>{user.userName}</Name>
+          </Link>
           <PostDate>{DateFormat(createdAt)}</PostDate>
         </div>
       </UserInfo>
@@ -31,11 +36,11 @@ export default PostTitle;
 const Wrapper = styled.div`
   margin-top: 4rem;
 `;
-const Title = styled.h2`
+const Title = styled.h3`
   font-size: 2.5rem;
   font-weight: lighter;
 `;
-const Subtitle = styled.h3`
+const Subtitle = styled.h4`
   margin-top: 1.25rem;
   line-height: 1.75rem;
   font-size: ${theme.fontSizes.xlarge};

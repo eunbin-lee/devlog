@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { getPostsThunk } from '../../modules/post';
@@ -28,10 +29,16 @@ function PostUserInfo({ post }: PostUserInfoProps) {
   return (
     <>
       <UserInfo>
-        <ProfileImg src={user.userImg} />
+        <Link href={`/[username]`} as={`/@${user.userName}`}>
+          <ProfileImg src={user.userImg} />
+        </Link>
         <div>
-          <Name>{user.userName}</Name>
-          <Introduction>{user.userIntroduction}</Introduction>
+          <Link href={`/[username]`} as={`/@${user.userName}`}>
+            <Name>{user.userName}</Name>
+          </Link>
+          <Link href={`/[username]`} as={`/@${user.userName}`}>
+            <Introduction>{user.userIntroduction}</Introduction>
+          </Link>
         </div>
       </UserInfo>
       {recentPosts && (

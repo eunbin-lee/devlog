@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Post } from '../../lib/api/post';
+import dompurify from 'dompurify';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { AiOutlineSmile, AiFillSmile, AiOutlineLink } from 'react-icons/ai';
-import dompurify from 'dompurify';
 
 interface PostContentProps {
   post: Post;
@@ -12,16 +12,25 @@ interface PostContentProps {
 function PostContent({ post }: PostContentProps) {
   const { postImg, postContent, likes } = post;
   const [like, setLike] = useState<boolean>(false);
-
+  const [likeNumber, setLikeNumber] = useState<number>(likes);
   const sanitizer = dompurify.sanitize;
+  const onClickLike = () => {
+    setLike(true);
+    setLikeNumber(Number(likeNumber) + 1);
+    if (like) {
+      setLike(false);
+      setLikeNumber(likes);
+    }
+  };
 
   return (
     <Wrapper>
       <ThumbnailImg src={postImg} />
       <Content dangerouslySetInnerHTML={{ __html: sanitizer(postContent) }} />
       <PostInfo>
-        <Likes>
-          {like ? <AiFillSmile /> : <AiOutlineSmile />} <span>{likes}</span>
+        <Likes onClick={onClickLike}>
+          {like ? <AiFillSmile /> : <AiOutlineSmile />}{' '}
+          <span>{likeNumber}</span>
         </Likes>
         <AiOutlineLink />
       </PostInfo>
