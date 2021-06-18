@@ -4,18 +4,14 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useInput from '../../lib/hooks/useInput';
 
-interface SearchInputProps {
-  onSearch: (keyword: string) => void;
-}
-
-function SearchInput({ onSearch }: SearchInputProps) {
+function SearchInput() {
   const router = useRouter();
   const [searchInput, onChangeSearch] = useInput();
 
   const onKeyPress = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter') {
-        onSearch(searchInput);
+        e.preventDefault();
         router.push(`/search?q=${searchInput}`);
       }
     },
@@ -38,8 +34,9 @@ function SearchInput({ onSearch }: SearchInputProps) {
 export default SearchInput;
 
 const SearchForm = styled.form`
-  width: 70%;
+  width: 100%;
   margin: 3rem auto 0;
+  padding: 0 1.5rem;
 `;
 const Input = styled.input`
   width: 100%;

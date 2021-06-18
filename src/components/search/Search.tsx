@@ -1,14 +1,18 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import SearchInput from './SearchInput';
+import SearchResult from './SearchResult';
 
 function Search() {
-  const onSearch = () => {};
+  const router = useRouter();
+  const { q } = router.query;
 
   return (
     <Container>
-      <SearchInput onSearch={onSearch} />
+      <SearchInput />
+      {q && <SearchResult query={q} />}
     </Container>
   );
 }
@@ -17,7 +21,7 @@ export default Search;
 
 const Container = styled.div`
   overflow: hidden;
-  width: 1024px;
+  width: 768px;
   margin: 0 auto;
   padding: 1rem 0;
 
