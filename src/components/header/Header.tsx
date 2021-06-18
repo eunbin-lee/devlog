@@ -56,7 +56,9 @@ const Inner = styled.div`
     width: 320px;
   }
 `;
-const LogoBlock = styled.div``;
+const LogoBlock = styled.div`
+  cursor: pointer;
+`;
 const UserBlock = styled.div`
   display: flex;
   justify-content: flex-start;

@@ -88,7 +88,7 @@ const PostItem = styled.li`
     width: 100%;
     height: inherit;
     margin-right: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3.75rem;
   }
 `;
 const ThumbnailImg = styled.img`
@@ -145,4 +145,5 @@ const Name = styled.p`
 const PostDate = styled.p`
   font-size: ${theme.fontSizes.xsmall};
   color: ${theme.palette.gray6};
+  cursor: default;
 `;

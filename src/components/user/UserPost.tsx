@@ -23,7 +23,7 @@ function UserPost({ post, onClickPost }: UserPostProps) {
   const sanitizer = dompurify.sanitize;
 
   return (
-    <li onClick={() => onClickPost(id)}>
+    <PostBlock onClick={() => onClickPost(id)}>
       <Title>{postTitle}</Title>
       <Subtitle>{postSubtitle}</Subtitle>
       <ThumbnailImg src={postImg} />
@@ -34,16 +34,24 @@ function UserPost({ post, onClickPost }: UserPostProps) {
         <p>좋아요 {likes}</p>
       </PostInfo>
       <hr style={{ margin: '4rem 0' }} />
-    </li>
+    </PostBlock>
   );
 }
 
 export default UserPost;
 
+const PostBlock = styled.li`
+  &:last-child {
+    hr {
+      display: none;
+    }
+  }
+`;
 const Title = styled.h3`
   line-height: 2.25rem;
   font-size: 1.75rem;
   font-weight: bold;
+  cursor: pointer;
 `;
 const Subtitle = styled.h4`
   margin-top: 0.75rem;
@@ -51,11 +59,13 @@ const Subtitle = styled.h4`
   line-height: 1.75rem;
   font-size: ${theme.fontSizes.large};
   color: ${theme.palette.gray6};
+  cursor: pointer;
 `;
 const ThumbnailImg = styled.img`
   width: 100%;
   height: inherit;
   object-fit: contain;
+  cursor: pointer;
 `;
 const Content = styled.div`
   overflow: hidden;
@@ -67,6 +77,7 @@ const Content = styled.div`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   word-break: break-all;
+  cursor: pointer;
 `;
 const PostInfo = styled.div`
   display: flex;
@@ -75,6 +86,7 @@ const PostInfo = styled.div`
   margin-top: 2.5rem;
   font-size: ${theme.fontSizes.small};
   color: ${theme.palette.gray6};
+  cursor: default;
   span {
     margin: 0 0.425rem;
   }

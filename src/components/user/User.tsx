@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { Post } from '../../lib/api/post';
 import { RootState } from '../../modules';
-import { getPostsThunk, post } from '../../modules/post';
+import { getPostsThunk } from '../../modules/post';
 import Loading from '../common/Loading';
 import UserPost from './UserPost';
 import UserProfile from './UserProfile';
@@ -49,7 +49,7 @@ function UserLayout() {
               <UserPost key={post.id} post={post} onClickPost={onClickPost} />
             ))}
           </PostList>
-          <UserProfile user={user} />
+          {user && <UserProfile user={user} />}
         </Container>
       )}
     </>
