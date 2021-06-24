@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@toast-ui/react-editor": "^3.0.0",
     "@types/styled-components": "^5.1.9",
     "axios": "^0.21.1",
     "dompurify": "^2.2.9",
