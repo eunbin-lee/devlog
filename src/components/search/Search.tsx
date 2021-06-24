@@ -5,7 +5,7 @@ import theme from '../../styles/theme';
 import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
 
-function Search() {
+function SearchLayout() {
   const router = useRouter();
   const { q } = router.query;
 
@@ -17,7 +17,7 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchLayout;
 
 const Container = styled.div`
   overflow: hidden;

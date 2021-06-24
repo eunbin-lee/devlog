@@ -33,9 +33,9 @@ const CustomButton = styled.button<{
     props.size === 'large' &&
     css`
       height: 2rem;
-      padding: 0 1.25rem;
+      padding: 1.125rem 1.25rem;
       font-size: ${theme.fontSizes.default};
-      border-radius: 1rem;
+      border-radius: 1.25rem;
     `};
   color: ${(props) => theme.buttonColors[props.color].color};
   background: ${(props) => theme.buttonColors[props.color].background};

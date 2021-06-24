@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import HeaderGnb from './HeaderGnb';
 
-function Header() {
+function HeaderLayout() {
   const router = useRouter();
   const { route, asPath } = router;
 
@@ -33,7 +33,7 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderLayout;
 
 const Container = styled.header`
   &.shadowing {

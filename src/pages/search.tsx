@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from '../components/header/Header';
-import Search from '../components/search/Search';
+import HeaderLayout from '../components/header/Header';
+import SearchLayout from '../components/search/Search';
 
 function SearchPage() {
   return (
     <>
-      <Header />
-      <Search />
+      <HeaderLayout />
+      <SearchLayout />
     </>
   );
 }
